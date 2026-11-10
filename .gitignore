@@ -1,0 +1,7 @@
+node_modules
+.next
+next-env.d.ts
+
+# local env
+.env
+.env*.local

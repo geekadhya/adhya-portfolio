@@ -1,0 +1,176 @@
+@import "tailwindcss";
+
+/*
+ * PALETTE
+ * ink / paper are the two neutrals. Everything else is loud on purpose:
+ * butter, tomato, violet, bubblegum. Sections swap which one owns the screen.
+ */
+@theme {
+  --color-ink: #0d0b10;
+  --color-paper: #f4f2fa;
+  --color-butter: #ffd83d;
+  --color-tomato: #ff4b1f;
+  --color-violet: #5a2bff;
+  --color-bubblegum: #ff9fd6;
+
+  /* legacy names, still used by the contact form + 404 */
+  --color-background: #0d0b10;
+  --color-border: #3a3640;
+  --color-text-primary: #f4f2fa;
+  --color-text-secondary: #b9b4c4;
+  --color-accent: #ff4b1f;
+  --color-accent-contrast: #0d0b10;
+
+  --font-sans: var(--font-inter-tight), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-anton), Impact, "Arial Narrow Bold", sans-serif;
+  --font-serif: var(--font-instrument), Georgia, serif;
+  --font-hand: var(--font-caveat), "Comic Sans MS", cursive;
+
+  --text-mega: clamp(5.5rem, 1rem + 19vw, 22rem);
+  --text-mega--line-height: 0.82;
+  --text-display: clamp(4.25rem, 1rem + 14vw, 15rem);
+  --text-display--line-height: 0.86;
+  --text-h2: clamp(3.25rem, 1rem + 9vw, 9rem);
+  --text-h2--line-height: 0.88;
+  --text-h3: clamp(1.75rem, 1.2rem + 2vw, 3rem);
+  --text-h3--line-height: 1;
+  --text-lead: clamp(1.25rem, 0.9rem + 1.4vw, 2.1rem);
+  --text-lead--line-height: 1.2;
+  --text-body: 1rem;
+  --text-body--line-height: 1.55;
+  --text-small: 0.875rem;
+  --text-small--line-height: 1.45;
+
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --duration-hover: 250ms;
+}
+
+:root {
+  --gutter: clamp(1rem, 4vw, 3rem);
+  --card-h: min(66svh, 44rem);
+}
+
+/* Lenis (smooth scroll) needs these */
+html.lenis, html.lenis body { height: auto; }
+.lenis.lenis-smooth { scroll-behavior: auto !important; }
+.lenis.lenis-stopped { overflow: hidden; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  position: relative;
+  background: var(--color-ink);
+  color: var(--color-paper);
+  font-family: var(--font-sans);
+  font-size: var(--text-body);
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: clip;
+}
+
+/* a little film grain over everything so flat colour doesn't feel digital */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 90;
+  pointer-events: none;
+  opacity: 0.09;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+}
+
+::selection { background: var(--color-butter); color: var(--color-ink); }
+
+h1, h2, h3, h4 { text-wrap: balance; }
+p { text-wrap: pretty; }
+
+a, button { -webkit-tap-highlight-color: transparent; }
+:focus-visible {
+  outline: 3px solid var(--color-butter);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+.tap { min-height: 44px; min-width: 44px; display: inline-flex; align-items: center; }
+
+/* ---------- texture helpers ---------- */
+.dots-light {
+  background-image: radial-gradient(rgba(244, 242, 250, 0.16) 1.2px, transparent 1.4px);
+  background-size: 22px 22px;
+}
+.dots-ink {
+  background-image: radial-gradient(rgba(13, 11, 16, 0.55) 1.3px, transparent 1.5px);
+  background-size: 18px 18px;
+}
+
+/* outlined type: fill goes clear, stroke does the work */
+.outline-text {
+  color: transparent;
+  -webkit-text-stroke: 2px currentColor;
+}
+
+/* marker highlight + hand-drawn underline */
+.marker {
+  background-image: linear-gradient(transparent 58%, var(--marker, var(--color-butter)) 58%, var(--marker, var(--color-butter)) 92%, transparent 92%);
+  padding-inline: 0.12em;
+  margin-inline: -0.12em;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+}
+.scribble {
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 12' preserveAspectRatio='none'><path d='M2 8 C30 2 60 11 95 6 S160 3 198 7' fill='none' stroke='%23ff4b1f' stroke-width='4' stroke-linecap='round'/></svg>");
+  background-repeat: no-repeat;
+  background-position: 0 100%;
+  background-size: 100% 0.28em;
+  padding-bottom: 0.18em;
+}
+
+/* ---------- stickers ---------- */
+.sticker {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4em;
+  border: 2.5px solid var(--color-ink);
+  border-radius: 999px;
+  padding: 0.35em 0.95em;
+  font-weight: 700;
+  line-height: 1.1;
+  box-shadow: 3px 3px 0 0 var(--color-ink);
+  transition: transform 220ms var(--ease-out-expo);
+}
+.sticker:hover { transform: rotate(0deg) scale(1.06) !important; }
+
+/* ---------- motion ---------- */
+@keyframes marquee { to { transform: translateX(-50%); } }
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee var(--marquee-duration, 30s) linear infinite;
+  will-change: transform;
+}
+.marquee-track[data-reverse="true"] { animation-direction: reverse; }
+
+@keyframes spin-slow { to { transform: rotate(360deg); } }
+.spin-slow { animation: spin-slow 14s linear infinite; }
+.spin-medium { animation: spin-slow 7s linear infinite; }
+
+@keyframes wiggle {
+  0%, 100% { transform: rotate(var(--r, 0deg)); }
+  30% { transform: rotate(calc(var(--r, 0deg) + 5deg)); }
+  65% { transform: rotate(calc(var(--r, 0deg) - 4deg)); }
+}
+.wiggle:hover { animation: wiggle 420ms ease-in-out; }
+
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track, .spin-slow, .spin-medium { animation: none; }
+  .wiggle:hover { animation: none; }
+}
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
