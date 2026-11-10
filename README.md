@@ -4,7 +4,7 @@ A personal portfolio showcasing my work at the intersection of **software develo
 
 Built to bring together thoughtful visual design, interactive motion, and practical engineering.
 
-## ✳ About the Portfolio
+## About the Portfolio
 
 This portfolio is designed as an editorial-style digital experience, featuring bold typography, minimal layouts, carefully considered spacing, and scroll-based interactions.
 
@@ -20,7 +20,7 @@ Rather than treating animation as decoration, I use motion to guide attention, c
 - **Next.js Image**: Image rendering and optimization
 - **Git & GitHub**: Version control and source code hosting
 
-## ✦ Design & Interaction
+## Design & Interaction
 
 Some of the key elements explored in this portfolio include:
 
