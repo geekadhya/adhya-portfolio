@@ -6,13 +6,28 @@ import type { ImageAsset, Project } from "./types";
  */
 export const projects: Project[] = [
   {
-    slug: "sentinel",
+  slug: "f1-telemetry-analyzer",
+  year: "2026",
+  title: "F1 Telemetry",
+  description:
+    "A telemetry analysis tool for Formula 1 racing, designed to help teams and enthusiasts explore race data, compare driver performance, and visualize telemetry.",
+  tags: ["Python", "Streamlit", "Pandas", "OpenF1 API"],
+  accent: "violet",
+  links: {
+    repo: "https://github.com/geekadhya/f1-telemetry-analyzer",
+  },
+},
+  {
+    slug: "mimi",
     year: "2026",
-    title: "SENTINEL",
+    title: "MIMI",
     description:
-      "Investigating trust and security in Retrieval-Augmented Generation systems. SENTINEL focuses on threats such as prompt injection and knowledge-base poisoning, alongside the challenge of detecting unsupported or hallucinated answers.",
-    tags: ["AI Security", "RAG", "Research"],
-    accent: "violet",
+      "A personalized makeup assistant designed to make beauty routines easier to understand and follow. MIMI connects user preferences and makeup collections with tailored product suggestions and step-by-step routines. Currently in development.",
+    tags: ["Next.js", "Supabase", "UI/UX"],
+    accent: "butter",
+    links: {
+  repo: "https://github.com/geekadhya/mimi",
+   },
   },
   {
     slug: "envirovista",
@@ -21,25 +36,22 @@ export const projects: Project[] = [
     description:
       "A national-level hackathon project exploring greenwashing by examining environmental claims against supporting evidence to help identify potentially misleading sustainability messaging.",
     tags: ["Greenwashing", "Sustainability", "Hackathon"],
-    accent: "butter",
-  },
-  {
-    slug: "mimi",
-    year: "2026",
-    title: "MIMI",
-    description:
-      "A personalized makeup assistant designed to make beauty routines easier to understand and follow. MIMI connects user preferences and makeup collections with tailored product suggestions and step-by-step routines. Currently in development.",
-    tags: ["Next.js", "Supabase", "UI/UX"],
     accent: "bubblegum",
+    links: {
+  repo: "https://github.com/geekadhya/envirovista.git",
+   },
   },
   {
-    slug: "bharat-voice",
-    year: "2023",
-    title: "Bharat Voice",
+    slug: "sentinal",
+    year: "2026",
+    title: "Sentinal",
     description:
-      "A voice-to-text and text-to-voice project focused on regional Indian languages, exploring more accessible ways for people to communicate with technology through speech and text.",
-    tags: ["Speech Technology", "Accessibility", "Indian Languages"],
+      "An AI-powered security and threat detection system designed to monitor and analyze potential risks in real-time, providing proactive alerts and insights to enhance safety and security measures.",
+    tags: ["AI", "Security", "Threat Detection"],
     accent: "tomato",
+    links: {
+  repo: "YOUR_SENTINEL_GITHUB_REPOSITORY_URL",
+   },
   },
 ];
 
@@ -55,20 +67,21 @@ const cover = (filename: string, width: number, height: number, alt: string): Im
 });
 
 export const projectMedia: Record<string, { cover: ImageAsset; gallery: ImageAsset[] }> = {
-  sentinel: {
-    cover: cover("sentinal.jpeg", 736, 981, "SENTINEL AI security and threat detection project visual"),
+  "f1-telemetry-analyzer": {
+    cover: cover("f1-telemetry-analyzer.jpeg", 736, 981, "F1 Telemetry Analyzer project visual"),
+    gallery: [],
+  },
+
+  mimi: {
+    cover: cover("mimi.jpeg", 736, 920, "MIMI personalized makeup assistant and beauty technology visual"),
     gallery: [],
   },
   envirovista: {
     cover: cover("envirovista.jpeg", 412, 805, "EnviroVista environmental evidence and sustainability visual"),
     gallery: [],
   },
-  mimi: {
-    cover: cover("mimi.jpeg", 736, 920, "MIMI personalized makeup assistant and beauty technology visual"),
-    gallery: [],
-  },
-  "bharat-voice": {
-    cover: cover("vtt.jpeg", 675, 1200, "Bharat Voice speech technology and regional Indian languages visual"),
+  "sentinal": {
+    cover: cover("sentinal.jpeg", 736, 981, "Sentinal AI security and threat detection project visual"),
     gallery: [],
   },
 };
